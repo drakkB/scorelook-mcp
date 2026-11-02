@@ -8,7 +8,7 @@ Remote [MCP](https://modelcontextprotocol.io) server for [ScoreLook](https://sco
 https://scorelook.fr/mcp
 ```
 
-Transport: streamable HTTP · Auth: none · Read-only.
+Transport: streamable HTTP · Auth: none · 24 tools: 21 read-only, 3 write tools for consented callback requests.
 
 Published on the official MCP Registry as **`fr.scorelook/capucine`**.
 
@@ -34,7 +34,9 @@ Claude Desktop (remote via `mcp-remote`):
 
 ChatGPT / Claude.ai: *Settings → Connectors → Add* → server URL `https://scorelook.fr/mcp`, no authentication. The `ask_capucine` and `recommend_look` tools ship an inline widget (Apps SDK / MCP Apps) that renders the look board directly in the conversation.
 
-## Tools (17)
+## Tools
+
+The live server exposes 24 tools. The full, current list is on [scorelook.fr/scorelook-mcp](https://scorelook.fr/scorelook-mcp). Main tools:
 
 | Tool | What it does |
 |---|---|
@@ -74,7 +76,7 @@ Capucine answers with a named look, why it works, what to watch, a capsule and c
 
 ## Safety & scope
 
-- **Read-only.** No tool writes anything. No user accounts, no private photos, no payments, no files, no shell.
+- **Read-only except callback requests.** Three tools (`proposer_demande_rappel`, `confirmer_action`, `annuler_action`) record a callback request, with the visitor's e-mail, consent and confirmation. No user accounts, no private photos, no payments, no files, no shell.
 - Only public ScoreLook content is exposed.
 - Answers are generated style directions in French, not personalized advice; shopping results are indicative (no stock/price guarantee).
 - Requests carrying a browser `Origin` header are rejected; call from a backend MCP client.
